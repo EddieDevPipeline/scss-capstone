@@ -1,0 +1,223 @@
+$primary-color: #ff477e;
+$secondary-color: #5c6bc0;
+$fonts-list: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@mixin respond-to($media) {
+  @if $media == "phone" {
+    @media (max-width: 600px) {
+      @content;
+    }
+  } @else if $media == "tablet" {
+    @media (max-width: 900px) {
+      @content;
+    }
+  } @else if $media == "desktop" {
+    @media (min-width: 901px) {
+      @content;
+    }
+  }
+}
+
+body {
+  font-family: $fonts-list;
+  color: $primary-color;
+}
+
+header nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+main {
+  padding-top: 70px;
+}
+
+nav {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline;
+      a {
+        text-decoration: none;
+        color: $primary-color;
+        &:hover {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+}
+
+#hero {
+  position: relative;
+  background: url("../assets/parallax_1.jpg") no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  padding: 4rem 1rem;
+  overflow: hidden;
+
+  h1,
+  p {
+    position: relative;
+    z-index: 2;
+  }
+
+  button {
+    background-color: $primary-color;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+    z-index: 2;
+  }
+
+  #hero-overlay-image {
+    max-width: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+}
+
+#content {
+  .content-block {
+    padding: 2rem 1rem;
+    border-bottom: 1px solid #eaeaea;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: #666;
+      line-height: 1.6;
+    }
+  }
+}
+
+@include respond-to("phone") {
+  #hero {
+    padding: 2rem 1rem;
+    h1 {
+      font-size: 2rem;
+    }
+    button {
+      font-size: 1rem;
+    }
+  }
+}
+
+#content {
+  .content-block {
+    margin: 2rem 0;
+  }
+}
+
+@include respond-to("phone") {
+  nav {
+    ul {
+      li {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+footer {
+  padding: 1rem;
+  background-color: $secondary-color;
+  color: white;
+  text-align: center;
+  p {
+    margin: 0;
+  }
+}
+
+a,
+button {
+  transition: color 0.3s, background-color 0.3s;
+  &:hover,
+  &:focus {
+    color: darken($primary-color, 10%);
+  }
+}
+
+@include respond-to("phone") {
+  #content {
+    .content-block {
+      padding: 1rem;
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+#about-hestia {
+  padding: 4rem 1rem;
+  background-color: #f7f7f7;
+  text-align: center;
+  h2 {
+    font-size: 2.5rem;
+    color: $secondary-color;
+  }
+  p {
+    color: $primary-color;
+    margin: 1rem 0;
+  }
+}
+
+#blog {
+  padding: 4rem 1rem;
+  .blog-posts {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    .blog-post {
+      width: 30%;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s;
+      &:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+      h3 {
+        font-size: 1.5rem;
+        color: $primary-color;
+      }
+      p {
+        font-size: 1rem;
+        color: darken($primary-color, 10%);
+      }
+    }
+  }
+}
+
+#get-in-touch {
+  padding: 4rem 1rem;
+  background-color: darken($secondary-color, 10%);
+  color: white;
+  text-align: center;
+  address {
+    font-style: normal;
+  }
+}
+
+@include respond-to("phone") {
+  #blog .blog-posts .blog-post {
+    width: 100%;
+  }
+}
